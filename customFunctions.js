@@ -267,3 +267,30 @@ console.log("Index of 4: " + myIndexOf(array, 4));
 console.log("Index of 5: " + myIndexOf(array, 5));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myPush: adds one or more elements to the end of an array and returns the new length of the array
+ * 
+ * @param {Array} arr Array to perform the operation on
+ * @param {...Object} elements The element(s) to add to the end of the array
+ * 
+ * @returns {Number} The new length of the array
+ */
+function myPush(arr, ...elements)
+{
+    arr = new Array(...arr, ...elements); 
+    return arr.length;
+}
+
+console.log("Default push");
+console.log("Before pushing: " + array);
+console.log("Length of new array: " + array.push(5, 6, 7, 8, 9));
+
+array = [1, 2, 3, 4]
+
+console.log("\nCustom push");
+console.log("Before pushing: " + array);
+console.log("Length of new array: " + myPush(array, 5, 6, 7, 8, 9));
+
+console.log("\n\n");
