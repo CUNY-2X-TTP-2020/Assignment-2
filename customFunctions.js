@@ -612,3 +612,51 @@ function nth(list, index)
 
 console.log("\nThe value at index 1 is: ");
 console.log(nth(arrayToList([10, 20, 30]), 1));
+
+console.log("\n\n");
+
+/*
+    Deep Comparison
+
+    Write a function deepEqual that takes two values and returns true only if 
+    they are the same value or are objects with the same properties, where the 
+    values of the properties are equal when compared with a recursive call to 
+    deepEqual.
+
+    To find out whether values should be compared directly (=== operator) or 
+    have their properties compared, you can use the typeof operator. If it produces 
+    "object" for both values, you should do a deep comparison. But you have to 
+    take into account that typeof null also produces "object".
+
+    console.log(deepEqual(deepObj, deepObj)) -> true
+    console.log(deepEqual(deepObj, {here: 1, object: 2})) -> false
+    console.log(deepEqual(deepObj, {here: {is: "an"}, object: 2})) -> true
+*/
+
+function deepEqual(obj1, obj2)
+{
+    if(obj1 === obj2) return true;
+    if((typeof obj1 != "object" || obj1 == null) || (typeof obj2 != "object" || obj2 == null)) return false;
+
+    let keys1 = Object.keys(obj1);
+    let keys2 = Object.keys(obj2);
+
+    // Checking if objects have the same number of properties
+    if(keys1.length != keys2.length) return false;
+
+    // Go through each property of the first object
+    // For some reason for...in causes the key to return 0 value
+    // But for...of works, probably because we have an array of keys
+    for(const key of keys1)
+    {   
+        // Check if second object has the same, and then do recursion to go deeper in the list
+        if(!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) return false;
+    }
+    return true;
+}
+
+let deepObj = {here: {is: "an"}, object: 2};
+
+console.log(deepEqual(deepObj, deepObj));
+console.log(deepEqual(deepObj, {here: 1, object: 2}));
+console.log(deepEqual(deepObj, {here: {is: "an"}, object: 2}));
