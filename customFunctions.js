@@ -336,16 +336,23 @@ console.log("\n\n");
  * 
  * @returns {Array} An array of strings that represent all the enumerable properties of the given object
  */
-function grabKeys(obj)
+Object.prototype.grabKeys = function(obj)
 {
     var keys = [];
 
     for(const key in obj)
     {
-        keys.push(key);
+        // Make sure obj is actually an object and not null
+        // Check if the object itself has the keys (if array does in fact contain the elements)
+        // This prevents the grabKeys function name to be added to the array
+        // since it is not a property of the obj
+
+        // Another way of writing this is
+        // obj.hasOwnProperty(key)
+        if(Object.prototype.hasOwnProperty.call(obj, key)) keys.push(key);
     }
     return keys;
-}
+};
 
 let arrObj = ['a', 'b', 'c'];
 let obj = { 0: 'a', 1: 'b', 2: 'c'};
@@ -357,9 +364,9 @@ console.log("obj keys: " + Object.keys(obj));
 console.log("randObj keys: " + Object.keys(randObj));
 
 console.log("\nCustom keys");
-console.log("arrObj keys: " + grabKeys(arrObj));
-console.log("obj keys: " + grabKeys(obj));
-console.log("randObj keys: " + grabKeys(randObj));
+console.log("arrObj keys: " + Object.grabKeys(arrObj));
+console.log("obj keys: " + Object.grabKeys(obj));
+console.log("randObj keys: " + Object.grabKeys(randObj));
 
 console.log("\n\n");
 
@@ -371,13 +378,20 @@ console.log("\n\n");
  * 
  * @returns {Array} An array of containing the given object's own enumerable property values
  */
-function grabValues(obj)
+Object.prototype.grabValues = function(obj)
 {
     var values = [];
 
     for(const key in obj)
     {
-        values.push(obj[key]);
+        // Make sure obj is actually an object and not null
+        // Check if the object itself has the keys (if array does in fact contain the elements)
+        // This prevents the grabKeys function name to be added to the array
+        // since it is not a property of the obj
+
+        // Another way of writing this is
+        // obj.hasOwnProperty(key)
+        if(Object.prototype.hasOwnProperty.call(obj, key)) values.push(obj[key]);
     }
     return values;
 }
@@ -388,9 +402,9 @@ console.log("obj values: " + Object.values(obj));
 console.log("randObj values: " + Object.values(randObj));
 
 console.log("\nCustom values");
-console.log("arrObj values: " + grabValues(arrObj));
-console.log("obj values: " + grabValues(obj));
-console.log("randObj values: " + grabValues(randObj));
+console.log("arrObj values: " + Object.grabValues(arrObj));
+console.log("obj values: " + Object.grabValues(obj));
+console.log("randObj values: " + Object.grabValues(randObj));
 
 console.log("\n\n");
 
