@@ -164,3 +164,47 @@ console.log("Are all numbers less than 5: " + myEvery(array, x => x < 5));
 console.log("Are all numbers greater than 3: " + myEvery(array, x => x > 3));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myReduce: executes a reducer function (that you provide) on each element of the array, resulting in a single output value
+ * 
+ * @param {Array} Array to perform the operation on
+ * @param {callback} Function to test for each element
+ * @param {Number} (Optional) Initial value to start accumulating from
+ * 
+ * @returns {Number} the single value that results from the reduction
+ */
+function myReduce(arr, callback, initialValue)
+{
+    if(arr.length === 0) return initialValue;
+    var accumulator;
+
+    arr.forEach((item, index, arr) =>
+    {
+        if(index === 0) (initialValue !== undefined || null) ? accumulator = initialValue : accumulator = 0;
+        // Callback can have 4 parameters:
+        // - accumulator: The accumulated return values of callback. It is the accumulated value previously returned in the last invotation of the callback, or initialValue, if it was supplied
+        // - currentValue: The current element being processed in the array
+        // - index (optional): The index of currentValue being processed in the array
+        // - array (optional): The array myReduce() was called upon
+        accumulator = callback(accumulator, item, index, arr);
+    });
+    return accumulator;
+}
+
+console.log("Default reduce");
+console.log("Sum of all values in array: " + array.reduce((count, current) =>
+{
+    count += current;
+    return count;
+}));
+
+console.log("\nCustom reduce");
+console.log("Sum of all values in array: " + myReduce(array, (count, current) =>
+{
+    count += current;
+    return count;
+}));
+
+console.log("\n\n");
