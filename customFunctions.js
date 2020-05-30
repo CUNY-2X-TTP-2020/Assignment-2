@@ -300,7 +300,7 @@ console.log("\n\n");
  * myLastIndexOf: returns the last index at which a given elment can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex
  * 
  * @param {Array} arr Array to perform the operation on
- * @param {Object} searchelement Element to locate in the array
+ * @param {Object} searchElement Element to locate in the array
  * @param {Number} fromIndex (Optional) The index at which to start searching backwards. Defaults to (arr.length - 1). If the index is greater than or equal to the length of the array, the whole array will be searched
  * 
  * @returns {Number} the last index of the element in the array, -1 if not found
