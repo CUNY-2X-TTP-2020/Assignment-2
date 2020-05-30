@@ -362,3 +362,34 @@ console.log("obj keys: " + grabKeys(obj));
 console.log("randObj keys: " + grabKeys(randObj));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * grabValues: returns an array of a given object's own enumerable property values, in the same order as that provided by a for...in loop
+ * 
+ * @param {Object} obj The object of which the enumerable's own properties are to be returned
+ * 
+ * @returns {Array} An array of containing the given object's own enumerable property values
+ */
+function grabValues(obj)
+{
+    var values = [];
+
+    for(const key in obj)
+    {
+        values.push(obj[key]);
+    }
+    return values;
+}
+
+console.log("Default values");
+console.log("arrObj values: " + Object.values(arrObj));
+console.log("obj values: " + Object.values(obj));
+console.log("randObj values: " + Object.values(randObj));
+
+console.log("\nCustom values");
+console.log("arrObj values: " + grabValues(arrObj));
+console.log("obj values: " + grabValues(obj));
+console.log("randObj values: " + grabValues(randObj));
+
+console.log("\n\n");
