@@ -98,3 +98,35 @@ console.log("\nCustom filter");
 console.log(myFilter(array, (x, index, arr) => x % 2 === 0));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * mySome: tests whether at least one element in the array passes the test implemented by the provided Function
+ * 
+ * @param {Array} Array to perform the operation on
+ * @param {callback} Function to test for each element
+ * 
+ * @returns {boolean} true if the callback function returns a truthy value for at least one element in the array. Otherwise, false
+ */
+function mySome(arr, callback)
+{
+    let hasSome = false;
+
+    arr.forEach((item, index, arr) =>
+    {
+        // Callback can have 3 parameters:
+        // - element: The current element being processed in the array
+        // - index (optional): The index of the current element being processed in the array
+        // - array (optional): The array mySome() was called upon
+        if(callback(item, index, arr)) hasSome = true;
+    });
+    return hasSome;
+}
+
+console.log("Default some");
+console.log("Is there a 2: " + array.some(x => x === 2));
+
+console.log("\nCustom some");
+console.log("Is there a 2: " + mySome(array, x => x === 2));
+
+console.log("\n\n");
