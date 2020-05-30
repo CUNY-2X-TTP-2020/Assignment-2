@@ -428,3 +428,46 @@ console.log("\n\n");
     The function call range(1, 10, 2) should return [1, 3, 5, 7, 9]
     Make sure it also works with negative step values so that the range(5, 2, -1) produces [5, 4, 3, 2]
 */
+
+/**
+ * @function
+ * range: returns an array containing all the numbers from start up to (and including) end
+ * 
+ * @param {Number} start The number to start from
+ * @param {Number} end The number to end from
+ * 
+ * @returns {Array} The array containing all the numbers from start up to (and including) end
+ */
+function range(start, end)
+{
+    var arr = [];
+
+    if(start < end)
+    {
+        for(let i = start; i <= end; i++)
+        {
+            arr.push(i);
+        }
+    }
+    return arr;
+}
+
+/**
+ * @function
+ * sum: returns the sum of all elements within an array
+ * 
+ * @param {Array} arr The array of numbers to be summed
+ * 
+ * @returns {Number} The sum of all the elements of the provided array
+ */
+function sum(arr)
+{
+    return arr.reduce((sum, item) =>
+    {
+        sum += item;
+        return sum;
+    }, 0);
+}
+
+console.log("Sum of numbers from 1 to 10: " + sum(range(1, 10)));
+console.log("Sum of numbers from 3 to 9: " + sum(range(3, 9)));
