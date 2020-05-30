@@ -66,3 +66,35 @@ console.log("\nCustom map");
 console.log(myMap(array, (x, index, arr) => x + arr.length + index));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myFilter: creates a new array with all elements that pass the test implemented by the provided function
+ * 
+ * @param {Array} Array to perform the operation on
+ * @param {callback} Function to test each element of the array. Return true to keep the element, false otherwise
+ * 
+ * @returns {Array} A new array with the elements that pass the past. If no elements pass the test, an empty array will be returned
+ */
+function myFilter(arr, callback)
+{
+    var newArr = [];
+
+    arr.forEach((item, index, arr) =>
+    {
+        // Callback can have 3 parameters:
+        // - element: The current element being processed in the array
+        // - index (optional): The index of the current element being processed in the array
+        // - array (optional): The array myFilter() was called upon
+        callback(item, index, arr) ? newArr.push(item) : newArr;
+    });
+    return newArr;
+}
+
+console.log("Default filter");
+console.log(array.filter((x, index, arr) => x % 2 === 0));
+
+console.log("\nCustom filter");
+console.log(myFilter(array, (x, index, arr) => x % 2 === 0));
+
+console.log("\n\n");
