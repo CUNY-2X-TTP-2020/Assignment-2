@@ -208,3 +208,32 @@ console.log("Sum of all values in array: " + myReduce(array, (count, current) =>
 }));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myIncludes: determines whether an array includes a certain value among its entries, returning true or false as appropriate
+ * 
+ * @param {Array} Array to perform the operation on
+ * @param {Object} The value to search for
+ * @param {Number} (Optional) The position in the array which to begin searching for valueToFind. Defaults to 0
+ * 
+ * @returns {Boolean} which is true if the value valueToFind is found within the array (or the part of the array indicated by the index fromIndex, if specified)
+ */
+function myIncludes(arr, valueToFind, fromIndex)
+{
+    let startingIndex = fromIndex === undefined ? 0 : fromIndex;
+
+    for(let i = startingIndex; i < arr.length; i++)
+    {
+        if(valueToFind === arr[i]) return true;
+    }
+    return false;
+}
+
+console.log("Default includes");
+console.log("Does the array include 3: " + array.includes(3));
+
+console.log("\nCustom includes")
+console.log("Does the array include 3: " + myIncludes(array, 3));
+
+console.log("\n\n");
