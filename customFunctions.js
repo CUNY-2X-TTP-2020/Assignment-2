@@ -4,10 +4,9 @@ let array = [1, 2, 3, 4];
  * @function
  * myEach: executes a provided function once for each array element
  * 
- * @param {Array} Array to perform the operation on
- * @param {callback} Function to execute on each element
- * 
- * @returns {undefined}
+ * @param {Array} arr Array to perform the operation on
+ * @param {Function} callback Function to execute on each element
+ *
  */
 function myEach(arr, callback)
 {
@@ -39,8 +38,8 @@ console.log("\n\n");
  * @function
  * myMap: creates a new array populated with the results of calling a provided function on every element in the calling array
  * 
- * @param {Array} Array to perform the operation on
- * @param {callback} Function to execute on each element
+ * @param {Array} arr Array to perform the operation on
+ * @param {Function} callback Function to execute on each element
  * 
  * @returns {Array} A new array with each element being the result of the callback function
  */
@@ -71,8 +70,8 @@ console.log("\n\n");
  * @function
  * myFilter: creates a new array with all elements that pass the test implemented by the provided function
  * 
- * @param {Array} Array to perform the operation on
- * @param {callback} Function to test each element of the array. Return true to keep the element, false otherwise
+ * @param {Array} arr Array to perform the operation on
+ * @param {Function} callback Function to test each element of the array. Return true to keep the element, false otherwise
  * 
  * @returns {Array} A new array with the elements that pass the past. If no elements pass the test, an empty array will be returned
  */
@@ -103,8 +102,8 @@ console.log("\n\n");
  * @function
  * mySome: tests whether at least one element in the array passes the test implemented by the provided Function
  * 
- * @param {Array} Array to perform the operation on
- * @param {callback} Function to test for each element
+ * @param {Array} arr Array to perform the operation on
+ * @param {Function} callback Function to test for each element
  * 
  * @returns {boolean} true if the callback function returns a truthy value for at least one element in the array. Otherwise, false
  */
@@ -135,8 +134,8 @@ console.log("\n\n");
  * @function
  * myEvery: tests whether all elements in the array pass the test implemented by the provided function
  * 
- * @param {Array} Array to perform the operation on
- * @param {callback} Function to test for each element
+ * @param {Array} arr Array to perform the operation on
+ * @param {Function} callback Function to test for each element
  * 
  * @returns {boolean} true if the callback function returns a truthy value for every array element. Otherwise, false
  */
@@ -169,9 +168,9 @@ console.log("\n\n");
  * @function
  * myReduce: executes a reducer function (that you provide) on each element of the array, resulting in a single output value
  * 
- * @param {Array} Array to perform the operation on
- * @param {callback} Function to test for each element
- * @param {Number} (Optional) Initial value to start accumulating from
+ * @param {Array} arr Array to perform the operation on
+ * @param {Function} callback Function to test for each element
+ * @param {Number} initialValue (Optional) Initial value to start accumulating from
  * 
  * @returns {Number} the single value that results from the reduction
  */
@@ -213,9 +212,9 @@ console.log("\n\n");
  * @function
  * myIncludes: determines whether an array includes a certain value among its entries, returning true or false as appropriate
  * 
- * @param {Array} Array to perform the operation on
- * @param {Object} The value to search for
- * @param {Number} (Optional) The position in the array which to begin searching for valueToFind. Defaults to 0
+ * @param {Array} arr Array to perform the operation on
+ * @param {Object} valueToFind The value to search for
+ * @param {Number} fromIndex (Optional) The position in the array which to begin searching for valueToFind. Defaults to 0
  * 
  * @returns {Boolean} which is true if the value valueToFind is found within the array (or the part of the array indicated by the index fromIndex, if specified)
  */
