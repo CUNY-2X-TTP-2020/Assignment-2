@@ -327,3 +327,38 @@ console.log("Last index of 4: " + myLastIndexOf(array2, 4));
 console.log("Last index of 4 starting from index 2: " + myLastIndexOf(array2, 4, 2));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * grabKeys: returns an array of a given object's own enumerable property 'names', iterated in the same order that a normal loop would
+ * 
+ * @param {Object} obj The object of which the enumerable's own properties are to be returned
+ * 
+ * @returns {Array} An array of strings that represent all the enumerable properties of the given object
+ */
+function grabKeys(obj)
+{
+    var keys = [];
+
+    for(const key in obj)
+    {
+        keys.push(key);
+    }
+    return keys;
+}
+
+let arrObj = ['a', 'b', 'c'];
+let obj = { 0: 'a', 1: 'b', 2: 'c'};
+let randObj = { 100: 'a', 2: 'b', 7: 'c'};
+
+console.log("Default keys");
+console.log("arrObj keys: " + Object.keys(arrObj));
+console.log("obj keys: " + Object.keys(obj));
+console.log("randObj keys: " + Object.keys(randObj));
+
+console.log("\nCustom keys");
+console.log("arrObj keys: " + grabKeys(arrObj));
+console.log("obj keys: " + grabKeys(obj));
+console.log("randObj keys: " + grabKeys(randObj));
+
+console.log("\n\n");
