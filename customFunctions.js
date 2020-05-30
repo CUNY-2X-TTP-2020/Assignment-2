@@ -294,3 +294,36 @@ console.log("Before pushing: " + array);
 console.log("Length of new array: " + myPush(array, 5, 6, 7, 8, 9));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myLastIndexOf: returns the last index at which a given elment can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex
+ * 
+ * @param {Array} arr Array to perform the operation on
+ * @param {Object} searchelement Element to locate in the array
+ * @param {Number} fromIndex (Optional) The index at which to start searching backwards. Defaults to (arr.length - 1). If the index is greater than or equal to the length of the array, the whole array will be searched
+ * 
+ * @returns {Number} the last index of the element in the array, -1 if not found
+ */
+function myLastIndexOf(arr, searchElement, fromIndex)
+{
+    let startingIndex = fromIndex === undefined ? arr.length - 1 : fromIndex;
+
+    for(let i = startingIndex; i >= 0; i--)
+    {
+        if(searchElement === arr[i]) return i;
+    }
+    return -1;
+}
+
+let array2 = [2, 4, 6, 4, 2];
+
+console.log("Default lastIndexOf");
+console.log("Last index of 4: " + array2.lastIndexOf(4));
+console.log("Last index of 4 starting from index 2: " + array2.lastIndexOf(4, 2));
+
+console.log("\nCustom lastIndexOf");
+console.log("Last index of 4: " + myLastIndexOf(array2, 4));
+console.log("Last index of 4 starting from index 2: " + myLastIndexOf(array2, 4, 2));
+
+console.log("\n\n");
