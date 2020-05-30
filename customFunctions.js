@@ -660,3 +660,38 @@ let deepObj = {here: {is: "an"}, object: 2};
 console.log(deepEqual(deepObj, deepObj));
 console.log(deepEqual(deepObj, {here: 1, object: 2}));
 console.log(deepEqual(deepObj, {here: {is: "an"}, object: 2}));
+
+console.log("\n\n");
+
+/*
+    Given an array nums, write a function to move all 0's to the end of it while 
+    maintaining the relative order of the non-zero elements
+
+    Input: [0, 1, 0, 3, 12]
+    Output: [1, 3, 12, 0, 0]
+
+    Note: You must do this in place without making a copy of the array
+*/
+
+function moveZeros(nums)
+{
+    // Number of non-zero elements
+    let count = 0;
+
+    for(let i = 0; i < nums.length; i++)
+    {
+        // For each non-zero element, start from index 0 and place them
+        // in order while incrementing count.
+        // This will maintain the ordering while keeping track of which
+        // elements are 0 and which are not
+        if(nums[i] != 0) nums[count++] = nums[i];
+    }
+    
+    // Now that we know how many non-zero elements there are and the length
+    // of the array, we can simply fill in the rest of the array with 0
+    while(count < nums.length) nums[count++] = 0;
+    return nums;
+}
+
+console.log("Move zeros: ");
+console.log(moveZeros([0, 1, 0, 3, 12]));
