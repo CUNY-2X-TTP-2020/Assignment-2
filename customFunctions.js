@@ -130,3 +130,37 @@ console.log("\nCustom some");
 console.log("Is there a 2: " + mySome(array, x => x === 2));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myEvery: tests whether all elements in the array pass the test implemented by the provided function
+ * 
+ * @param {Array} Array to perform the operation on
+ * @param {callback} Function to test for each element
+ * 
+ * @returns {boolean} true if the callback function returns a truthy value for every array element. Otherwise, false
+ */
+function myEvery(arr, callback)
+{
+    let hasEvery = true;
+
+    arr.forEach((item, index, arr) =>
+    {
+        // Callback can have 3 parameters:
+        // - element: The current element being processed in the array
+        // - index (optional): The index of the current element being processed in the array
+        // - array (optional): The array myEvery() was called upon
+        if(!callback(item, index, arr)) hasEvery = false;
+    });
+    return hasEvery;
+}
+
+console.log("Default every");
+console.log("Are all numbers less than 5: " + array.every(x => x < 5));
+console.log("Are all numbers greater than 3: " + array.every(x => x > 3));
+
+console.log("\nCustom every");
+console.log("Are all numbers less than 5: " + myEvery(array, x => x < 5));
+console.log("Are all numbers greater than 3: " + myEvery(array, x => x > 3));
+
+console.log("\n\n");
