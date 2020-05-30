@@ -536,3 +536,79 @@ console.log("\nReverse: " + reverseArray(anotherReverse));
 console.log("Reverse in place: " + reverseArrayInPlace(anotherReverse));
 
 console.log("\n\n");
+
+/*
+    A List
+
+    A list (not to be confused with array), is a nested set of objects, with the
+    first object holding a reference to the second, the second to the third, and so on.
+
+    Write a function arrayToList that builds up a list structure like the one shown when 
+    given [1, 2, 3] as an argument.
+
+    arrayToList([10, 20]) -> {value: 10, rest: {value: 20, rest: null}}
+
+    Also write a listToArray function that produces an array from a list.
+
+    listToArray(arrayToList([10, 20, 30])) -> [10, 20, 30]
+
+    Then add a helper function prepend, which takes an element and a list and creates a 
+    new list that adds the element to the front of the input list.
+
+    prepend(10, prepend(20, null)) -> {value: 10, rest: {value: 20, rest: null}}
+
+    Then add nth, which takes a list and a number and returns the element at the given 
+    position in the list (with zero referring to the first element) or underfined when 
+    there is no such element. Also write a recursive version of nth.
+
+    nth(arrayToList([10, 20, 30]), 1) -> 20
+*/
+
+function arrayToList(arr)
+{
+    if(arr === null || arr === undefined) return null;
+    if(arr.length === 0) return {};
+
+    let list = null;
+
+    for(let i = arr.length - 1; i >= 0; i--)
+    {
+        list = prepend(arr[i], list);
+    }
+    return list;
+}
+
+console.log("[10, 20] to list: ");
+console.log(arrayToList([10, 20]));
+
+function listToArray(list)
+{
+    let array = [];
+
+    while(list !== null)
+    { 
+        array.push(nth(list, 0));
+        list = list.rest;
+    }
+    return array;
+}
+
+console.log("\nList back to array: ");
+console.log(listToArray(arrayToList([10, 20])));
+
+function prepend(element, list)
+{
+    return {value: element, rest: list};
+}
+
+console.log("\nPrepend values to create list: ");
+console.log(prepend(10, prepend(20, null)));
+
+function nth(list, index)
+{
+    if(index === 0) return list.value;
+    return nth(list.rest, index - 1);
+}
+
+console.log("\nThe value at index 1 is: ");
+console.log(nth(arrayToList([10, 20, 30]), 1));
