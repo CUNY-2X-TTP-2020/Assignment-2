@@ -471,3 +471,68 @@ function sum(arr)
 
 console.log("Sum of numbers from 1 to 10: " + sum(range(1, 10)));
 console.log("Sum of numbers from 3 to 9: " + sum(range(3, 9)));
+
+console.log("\n\n");
+
+/*
+    Reversing an Array
+
+    reverseArray: takes an array as an argument and produces a new array that has
+    the same elements in the inverse order
+
+    reverseArrayInPlace: does the same as reverseArray, but modifies the array given
+    as an argument by reversing its elements
+
+    Neither functions may use the vanilla reverse function
+*/
+
+/**
+ * @function
+ * reverseArray: takes an array as an argument and produces a new array that has
+ * the same elements in the reverse order
+ * 
+ * @param {Array} arr The array to reverse
+ * 
+ * @returns {Array} The reversed array
+ */
+function reverseArray(arr)
+{
+    var newArr = [];
+
+    for(let i = arr.length - 1; i >= 0; i--)
+    {
+        newArr.push(arr[i]);
+    }
+    return newArr;
+}
+
+/**
+ * @function
+ * reverseArrayInPlace: does the same as reverseArray, but modifies the array given
+ * as an argument by reversing its elements
+ * 
+ * @param {Array} arr The array to reverse in place
+ * 
+ * @returns {Array} The reversed array
+ */
+function reverseArrayInPlace(arr)
+{
+    for(let i = 0; i < arr.length / 2; i++)
+    {
+        let temp = arr[arr.length - 1 - i];
+        arr[arr.length - 1 - i] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
+}
+
+let reverseThis = [1, 2, 3, 4, 5]
+let anotherReverse = [4, 7, 9, 10]
+
+console.log("Reverse: " + reverseArray(reverseThis));
+console.log("Reverse in place: " + reverseArrayInPlace(reverseThis));
+
+console.log("\nReverse: " + reverseArray(anotherReverse));
+console.log("Reverse in place: " + reverseArrayInPlace(anotherReverse));
+
+console.log("\n\n");
