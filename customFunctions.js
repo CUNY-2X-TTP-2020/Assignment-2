@@ -336,16 +336,23 @@ console.log("\n\n");
  * 
  * @returns {Array} An array of strings that represent all the enumerable properties of the given object
  */
-function grabKeys(obj)
+Object.prototype.grabKeys = function(obj)
 {
     var keys = [];
 
     for(const key in obj)
     {
-        keys.push(key);
+        // Make sure obj is actually an object and not null
+        // Check if the object itself has the keys (if array does in fact contain the elements)
+        // This prevents the grabKeys function name to be added to the array
+        // since it is not a property of the obj
+
+        // Another way of writing this is
+        // obj.hasOwnProperty(key)
+        if(Object.prototype.hasOwnProperty.call(obj, key)) keys.push(key);
     }
     return keys;
-}
+};
 
 let arrObj = ['a', 'b', 'c'];
 let obj = { 0: 'a', 1: 'b', 2: 'c'};
@@ -357,9 +364,9 @@ console.log("obj keys: " + Object.keys(obj));
 console.log("randObj keys: " + Object.keys(randObj));
 
 console.log("\nCustom keys");
-console.log("arrObj keys: " + grabKeys(arrObj));
-console.log("obj keys: " + grabKeys(obj));
-console.log("randObj keys: " + grabKeys(randObj));
+console.log("arrObj keys: " + Object.grabKeys(arrObj));
+console.log("obj keys: " + Object.grabKeys(obj));
+console.log("randObj keys: " + Object.grabKeys(randObj));
 
 console.log("\n\n");
 
@@ -371,13 +378,20 @@ console.log("\n\n");
  * 
  * @returns {Array} An array of containing the given object's own enumerable property values
  */
-function grabValues(obj)
+Object.prototype.grabValues = function(obj)
 {
     var values = [];
 
     for(const key in obj)
     {
-        values.push(obj[key]);
+        // Make sure obj is actually an object and not null
+        // Check if the object itself has the keys (if array does in fact contain the elements)
+        // This prevents the grabKeys function name to be added to the array
+        // since it is not a property of the obj
+
+        // Another way of writing this is
+        // obj.hasOwnProperty(key)
+        if(Object.prototype.hasOwnProperty.call(obj, key)) values.push(obj[key]);
     }
     return values;
 }
@@ -388,8 +402,261 @@ console.log("obj values: " + Object.values(obj));
 console.log("randObj values: " + Object.values(randObj));
 
 console.log("\nCustom values");
-console.log("arrObj values: " + grabValues(arrObj));
-console.log("obj values: " + grabValues(obj));
-console.log("randObj values: " + grabValues(randObj));
+console.log("arrObj values: " + Object.grabValues(arrObj));
+console.log("obj values: " + Object.grabValues(obj));
+console.log("randObj values: " + Object.grabValues(randObj));
 
 console.log("\n\n");
+
+/* 
+   ==============================================================================
+    Miscellaneous Problems: EJS Chapter 4 - Data Structures (Objects and Arrays)
+   ==============================================================================
+*/
+
+/*
+    The Sum of a Range
+
+    Write a range function that takes two arguments, start and end, and 
+    returns an array containing all the numbers from start up to (and including) end.
+
+    Next, write a sum function that takes an array of numbers and returns the sum of these numbers.
+
+    As a bonus, modify the range function to take an optional third argument that indicates the "step" value used when building the array. 
+    If no step is given, the elements go up by increments of one, corresponding to the old behavior.
+
+    The function call range(1, 10, 2) should return [1, 3, 5, 7, 9]
+    Make sure it also works with negative step values so that the range(5, 2, -1) produces [5, 4, 3, 2]
+*/
+
+/**
+ * @function
+ * range: returns an array containing all the numbers from start up to (and including) end
+ * 
+ * @param {Number} start The number to start from
+ * @param {Number} end The number to end from
+ * 
+ * @returns {Array} The array containing all the numbers from start up to (and including) end
+ */
+function range(start, end)
+{
+    var arr = [];
+
+    if(start < end)
+    {
+        for(let i = start; i <= end; i++)
+        {
+            arr.push(i);
+        }
+    }
+    return arr;
+}
+
+/**
+ * @function
+ * sum: returns the sum of all elements within an array
+ * 
+ * @param {Array} arr The array of numbers to be summed
+ * 
+ * @returns {Number} The sum of all the elements of the provided array
+ */
+function sum(arr)
+{
+    return arr.reduce((sum, item) =>
+    {
+        sum += item;
+        return sum;
+    }, 0);
+}
+
+console.log("Sum of numbers from 1 to 10: " + sum(range(1, 10)));
+console.log("Sum of numbers from 3 to 9: " + sum(range(3, 9)));
+
+console.log("\n\n");
+
+/*
+    Reversing an Array
+
+    reverseArray: takes an array as an argument and produces a new array that has
+    the same elements in the inverse order
+
+    reverseArrayInPlace: does the same as reverseArray, but modifies the array given
+    as an argument by reversing its elements
+
+    Neither functions may use the vanilla reverse function
+*/
+
+/**
+ * @function
+ * reverseArray: takes an array as an argument and produces a new array that has
+ * the same elements in the reverse order
+ * 
+ * @param {Array} arr The array to reverse
+ * 
+ * @returns {Array} The reversed array
+ */
+function reverseArray(arr)
+{
+    var newArr = [];
+
+    for(let i = arr.length - 1; i >= 0; i--)
+    {
+        newArr.push(arr[i]);
+    }
+    return newArr;
+}
+
+/**
+ * @function
+ * reverseArrayInPlace: does the same as reverseArray, but modifies the array given
+ * as an argument by reversing its elements
+ * 
+ * @param {Array} arr The array to reverse in place
+ * 
+ * @returns {Array} The reversed array
+ */
+function reverseArrayInPlace(arr)
+{
+    for(let i = 0; i < arr.length / 2; i++)
+    {
+        let temp = arr[arr.length - 1 - i];
+        arr[arr.length - 1 - i] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
+}
+
+let reverseThis = [1, 2, 3, 4, 5]
+let anotherReverse = [4, 7, 9, 10]
+
+console.log("Reverse: " + reverseArray(reverseThis));
+console.log("Reverse in place: " + reverseArrayInPlace(reverseThis));
+
+console.log("\nReverse: " + reverseArray(anotherReverse));
+console.log("Reverse in place: " + reverseArrayInPlace(anotherReverse));
+
+console.log("\n\n");
+
+/*
+    A List
+
+    A list (not to be confused with array), is a nested set of objects, with the
+    first object holding a reference to the second, the second to the third, and so on.
+
+    Write a function arrayToList that builds up a list structure like the one shown when 
+    given [1, 2, 3] as an argument.
+
+    arrayToList([10, 20]) -> {value: 10, rest: {value: 20, rest: null}}
+
+    Also write a listToArray function that produces an array from a list.
+
+    listToArray(arrayToList([10, 20, 30])) -> [10, 20, 30]
+
+    Then add a helper function prepend, which takes an element and a list and creates a 
+    new list that adds the element to the front of the input list.
+
+    prepend(10, prepend(20, null)) -> {value: 10, rest: {value: 20, rest: null}}
+
+    Then add nth, which takes a list and a number and returns the element at the given 
+    position in the list (with zero referring to the first element) or underfined when 
+    there is no such element. Also write a recursive version of nth.
+
+    nth(arrayToList([10, 20, 30]), 1) -> 20
+*/
+
+function arrayToList(arr)
+{
+    if(arr === null || arr === undefined) return null;
+    if(arr.length === 0) return {};
+
+    let list = null;
+
+    for(let i = arr.length - 1; i >= 0; i--)
+    {
+        list = prepend(arr[i], list);
+    }
+    return list;
+}
+
+console.log("[10, 20] to list: ");
+console.log(arrayToList([10, 20]));
+
+function listToArray(list)
+{
+    let array = [];
+
+    while(list !== null)
+    { 
+        array.push(nth(list, 0));
+        list = list.rest;
+    }
+    return array;
+}
+
+console.log("\nList back to array: ");
+console.log(listToArray(arrayToList([10, 20])));
+
+function prepend(element, list)
+{
+    return {value: element, rest: list};
+}
+
+console.log("\nPrepend values to create list: ");
+console.log(prepend(10, prepend(20, null)));
+
+function nth(list, index)
+{
+    if(index === 0) return list.value;
+    return nth(list.rest, index - 1);
+}
+
+console.log("\nThe value at index 1 is: ");
+console.log(nth(arrayToList([10, 20, 30]), 1));
+
+console.log("\n\n");
+
+/*
+    Deep Comparison
+
+    Write a function deepEqual that takes two values and returns true only if 
+    they are the same value or are objects with the same properties, where the 
+    values of the properties are equal when compared with a recursive call to 
+    deepEqual.
+
+    To find out whether values should be compared directly (=== operator) or 
+    have their properties compared, you can use the typeof operator. If it produces 
+    "object" for both values, you should do a deep comparison. But you have to 
+    take into account that typeof null also produces "object".
+
+    console.log(deepEqual(deepObj, deepObj)) -> true
+    console.log(deepEqual(deepObj, {here: 1, object: 2})) -> false
+    console.log(deepEqual(deepObj, {here: {is: "an"}, object: 2})) -> true
+*/
+
+function deepEqual(obj1, obj2)
+{
+    if(obj1 === obj2) return true;
+    if((typeof obj1 != "object" || obj1 == null) || (typeof obj2 != "object" || obj2 == null)) return false;
+
+    let keys1 = Object.keys(obj1);
+    let keys2 = Object.keys(obj2);
+
+    // Checking if objects have the same number of properties
+    if(keys1.length != keys2.length) return false;
+
+    // Go through each property of the first object
+    // For some reason for...in causes the key to return 0 value
+    // But for...of works, probably because we have an array of keys
+    for(const key of keys1)
+    {   
+        // Check if second object has the same, and then do recursion to go deeper in the list
+        if(!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) return false;
+    }
+    return true;
+}
+
+let deepObj = {here: {is: "an"}, object: 2};
+
+console.log(deepEqual(deepObj, deepObj));
+console.log(deepEqual(deepObj, {here: 1, object: 2}));
+console.log(deepEqual(deepObj, {here: {is: "an"}, object: 2}));
