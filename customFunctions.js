@@ -236,3 +236,34 @@ console.log("\nCustom includes")
 console.log("Does the array include 3: " + myIncludes(array, 3));
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myIndexOf: returns the first index at which a given element can be found in the array, or -1 if it is not present
+ * 
+ * @param {Array} arr Array to perform the operation on
+ * @param {Object} searchElement Element to locate in the array
+ * @param {Number} fromIndex (Optional) The index to start the search at. If the index is greater than or equal to the array's length, -1 is returned, which means the array will not be searched
+ * 
+ * @returns {Number} the first index of the element in the array, -1 if not found
+ */
+function myIndexOf(arr, searchElement, fromIndex)
+{
+    let startingIndex = fromIndex === undefined ? 0 : fromIndex;
+
+    for(let i = startingIndex; i < arr.length; i++)
+    {
+        if(searchElement === arr[i]) return i;
+    }
+    return -1;
+}
+
+console.log("Default indexOf");
+console.log("Index of 4: " + array.indexOf(4));
+console.log("Index of 5: " + array.indexOf(5));
+
+console.log("\nCustom indexOf");
+console.log("Index of 4: " + myIndexOf(array, 4));
+console.log("Index of 5: " + myIndexOf(array, 5));
+
+console.log("\n\n");
