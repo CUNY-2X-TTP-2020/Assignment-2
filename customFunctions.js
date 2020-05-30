@@ -34,3 +34,35 @@ myEach(array, (x, index, arr) =>
 });
 
 console.log("\n\n");
+
+/**
+ * @function
+ * myMap: creates a new array populated with the results of calling a provided function on every element in the calling array
+ * 
+ * @param {Array} Array to perform the operation on
+ * @param {callback} Function to execute on each element
+ * 
+ * @returns {Array} A new array with each element being the result of the callback function
+ */
+function myMap(arr, callback)
+{
+    var newArr = [];
+
+    arr.forEach((item, index, arr) =>
+    {
+        // Callback can have 3 parameters:
+        // - currentValue: The current element being processed in the array
+        // - index (optional): The index of currentValue in the array
+        // - array (optional): The array myMap() was called upon
+        newArr.push(callback(item, index, arr));
+    });
+    return newArr;
+};
+
+console.log("Default map");
+console.log(array.map((x, index, arr) => x + arr.length + index));
+
+console.log("\nCustom map");
+console.log(myMap(array, (x, index, arr) => x + arr.length + index));
+
+console.log("\n\n");
