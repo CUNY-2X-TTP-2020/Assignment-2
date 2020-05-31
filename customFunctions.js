@@ -400,7 +400,7 @@ Object.prototype.grabValues = function(obj)
     {
         // Make sure obj is actually an object and not null
         // Check if the object itself has the keys (if array does in fact contain the elements)
-        // This prevents the grabKeys function name to be added to the array
+        // This prevents the grabValues function to be added to the array
         // since it is not a property of the obj
 
         // Another way of writing this is
