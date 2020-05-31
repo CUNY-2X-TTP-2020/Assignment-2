@@ -400,7 +400,7 @@ Object.prototype.grabValues = function(obj)
     {
         // Make sure obj is actually an object and not null
         // Check if the object itself has the keys (if array does in fact contain the elements)
-        // This prevents the grabKeys function name to be added to the array
+        // This prevents the grabValues function to be added to the array
         // since it is not a property of the obj
 
         // Another way of writing this is
@@ -450,20 +450,29 @@ console.log("\n\n");
  * 
  * @param {Number} start The number to start from
  * @param {Number} end The number to end from
+ * @param {Number} step The increment amount between start and end
  * 
  * @returns {Array} The array containing all the numbers from start up to (and including) end
  */
-function range(start, end)
+function range(start, end, step)
 {
     let arr = [];
 
     if(start < end)
     {
-        for(let i = start; i <= end; i++)
+        for(let i = start; i <= end; (typeof step == "number" && step > 0) ? i += step : i++)
         {
             arr.push(i);
         }
     }
+    else if(start > end)
+    {
+        for(let i = start; i >= end; (typeof step == "number" && step < 0) ? i += step : i--)
+        {
+            arr.push(i);
+        }
+    }
+    else if(start === end) arr = [start, end];
     return arr;
 }
 
@@ -486,6 +495,20 @@ function sum(arr)
 
 console.log("Sum of numbers from 1 to 10: " + sum(range(1, 10)));
 console.log("Sum of numbers from 3 to 9: " + sum(range(3, 9)));
+console.log("Sum of numbers from 10 to 1: " + sum(range(10, 1)));
+console.log("Sum of numbers from 9 to 3: " + sum(range(9, 3)));
+
+console.log("\nSum of numbers from 1 to 10 step 2: " + sum(range(1, 10, 2)));
+console.log("Sum of numbers from 3 to 9 step 2: " + sum(range(3, 9, 2)));
+console.log("Sum of numbers from 10 to 1 step -2: " + sum(range(10, 1, -2)));
+console.log("Sum of numbers from 9 to 3 step -2: " + sum(range(9, 3, -2)));
+
+console.log("\nSum of numbers from 1 to 10 step -2: " + sum(range(1, 10, -2)));
+console.log("Sum of numbers from 10 to 1 step 2: " + sum(range(10, 1, 2)));
+
+console.log("\nSum of numbers from 5 to 5: " + sum(range(5, 5)));
+console.log("Sum of numbers from 5 to 5 step 2: " + sum(range(5, 5, 2)));
+console.log("Sum of numbers from 5 to 5 step -2: " + sum(range(5, 5, -2)));
 
 console.log("\n\n");
 
