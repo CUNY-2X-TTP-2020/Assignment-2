@@ -503,8 +503,12 @@ console.log("Sum of numbers from 3 to 9 step 2: " + sum(range(3, 9, 2)));
 console.log("Sum of numbers from 10 to 1 step -2: " + sum(range(10, 1, -2)));
 console.log("Sum of numbers from 9 to 3 step -2: " + sum(range(9, 3, -2)));
 
+console.log("\nSum of numbers from 1 to 10 step -2: " + sum(range(1, 10, -2)));
+console.log("Sum of numbers from 10 to 1 step 2: " + sum(range(10, 1, 2)));
+
 console.log("\nSum of numbers from 5 to 5: " + sum(range(5, 5)));
 console.log("Sum of numbers from 5 to 5 step 2: " + sum(range(5, 5, 2)));
+console.log("Sum of numbers from 5 to 5 step -2: " + sum(range(5, 5, -2)));
 
 console.log("\n\n");
 
