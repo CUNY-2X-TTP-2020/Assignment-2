@@ -46,7 +46,7 @@ console.log("\n\n");
  */
 function myMap(arr, callback)
 {
-    var newArr = [];
+    let newArr = [];
 
     arr.forEach((item, index, arr) =>
     {
@@ -80,7 +80,7 @@ console.log("\n\n");
  */
 function myFilter(arr, callback)
 {
-    var newArr = [];
+    let newArr = [];
 
     arr.forEach((item, index, arr) =>
     {
@@ -182,7 +182,7 @@ console.log("\n\n");
 function myReduce(arr, callback, initialValue)
 {
     if(arr.length === 0) return initialValue;
-    var accumulator;
+    let accumulator;
 
     arr.forEach((item, index, arr) =>
     {
@@ -351,7 +351,7 @@ console.log("\n\n");
  */
 Object.prototype.grabKeys = function(obj)
 {
-    var keys = [];
+    let keys = [];
 
     for(const key in obj)
     {
@@ -394,7 +394,7 @@ console.log("\n\n");
  */
 Object.prototype.grabValues = function(obj)
 {
-    var values = [];
+    let values = [];
 
     for(const key in obj)
     {
@@ -455,7 +455,7 @@ console.log("\n\n");
  */
 function range(start, end)
 {
-    var arr = [];
+    let arr = [];
 
     if(start < end)
     {
@@ -512,7 +512,7 @@ console.log("\n\n");
  */
 function reverseArray(arr)
 {
-    var newArr = [];
+    let newArr = [];
 
     for(let i = arr.length - 1; i >= 0; i--)
     {
